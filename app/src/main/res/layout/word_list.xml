@@ -6,5 +6,6 @@
     android:layout_height="match_parent"
     android:numColumns="auto_fit"
     tools:context="com.example.android.miwok.Numbers"
-    android:orientation="vertical" />
+    android:orientation="vertical"
+    android:drawSelectorOnTop="true"/>
 
