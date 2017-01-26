@@ -1,9 +1,9 @@
 package com.example.android.miwok;
 
-
-import android.media.AudioManager;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -11,12 +11,25 @@ import java.util.ArrayList;
 
 public class Numbers extends AppCompatActivity {
     ClickListener clickListener;
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId()){
+            case R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
 
-        AudioManager am = (AudioManager)getSystemService(AUDIO_SERVICE);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 
         final ArrayList<Word> words = new ArrayList<>();
         words.add(new Word("one", "lutti", R.drawable.number_one, R.raw.number_one));

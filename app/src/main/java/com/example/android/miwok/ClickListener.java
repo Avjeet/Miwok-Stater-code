@@ -87,18 +87,22 @@ public class ClickListener implements AdapterView.OnItemClickListener {
     }
 
     public void setPauseImage() {
-        mImageView.setImageResource(android.R.drawable.ic_media_pause);
+        if(mImageView!=null)
+            mImageView.setImageResource(android.R.drawable.ic_media_pause);
     }
 
     public void setPlayImage() {
-        mImageView.setImageResource(android.R.drawable.ic_media_play);
+        if(mImageView!=null)
+            mImageView.setImageResource(android.R.drawable.ic_media_play);
     }
 
     public void releaseMediaPlayer() {
-        if (mediaPlayer != null)
+        if (mediaPlayer != null) {
             // Regardless of the current state of the media player, release its resources
             // because we no longer need it.
             mediaPlayer.release();
+
+        }
 
         // Regardless of whether or not we were granted audio focus, abandon it. This also
         // unregisters the AudioFocusChangeListener so we don't get anymore callbacks.
