@@ -1,64 +1,19 @@
 package com.example.android.miwok;
 
-import android.os.Bundle;
-import android.support.v4.app.NavUtils;
+
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
-import android.widget.ListView;
-
-import java.util.ArrayList;
-
-import static com.example.android.miwok.R.color.category_phrases;
-
+import android.os.Bundle;
 
 public class Phrases extends AppCompatActivity {
-    ClickListener clickListener;
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch(item.getItemId()){
-            case R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.word_list);
+        setContentView(R.layout.activity_category);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        final ArrayList<Word> words = new ArrayList<>();
-        words.add(new Word("Where are you going?", "minto wuksus", R.raw.phrase_where_are_you_going));
-        words.add(new Word("What is your name?", "tinnә oyaase'nә", R.raw.phrase_what_is_your_name));
-        words.add(new Word("My name is..", "oyaaset...", R.raw.phrase_my_name_is));
-        words.add(new Word("How are you feeling?", "michәksәs?", R.raw.phrase_how_are_you_feeling));
-        words.add(new Word("I’m feeling good.", "kuchi achit", R.raw.phrase_im_feeling_good));
-        words.add(new Word("Are you coming?", "әәnәs'aa?", R.raw.phrase_are_you_coming));
-        words.add(new Word("Yes, I’m coming. yellow", "hәә’ әәnәm", R.raw.phrase_yes_im_coming));
-        words.add(new Word("I’m coming.", "әәnәm", R.raw.phrase_im_coming));
-        words.add(new Word("Let’s go.", "yoowutis", R.raw.phrase_lets_go));
-
-
-        WordAdapter itemsAdapter = new WordAdapter(this, words, category_phrases);
-
-        ListView listView = (ListView) findViewById(R.id.list);
-
-        listView.setAdapter(itemsAdapter);
-
-        clickListener = new ClickListener(getBaseContext(), words);
-        listView.setOnItemClickListener(clickListener);
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, new PhrasesFragment()).commit();
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        clickListener.releaseMediaPlayer();
-        clickListener.setPlayImage();
-
-    }
 }

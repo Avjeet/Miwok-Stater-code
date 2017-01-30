@@ -30,6 +30,9 @@ public class WordAdapter extends ArrayAdapter<Word> {
             viewHolder = null;
             listItemView= LayoutInflater.from(getContext()).inflate(R.layout.list_item,parent,false);
             viewHolder=new ViewHolder((TextView)listItemView.findViewById(R.id.miwok_words),(TextView)listItemView.findViewById(R.id.english_words),(ImageView)listItemView.findViewById(R.id.icon_pic),listItemView.findViewById(R.id.text_layout),(ImageView) listItemView.findViewById(R.id.play_button));
+            listItemView.setTag(viewHolder);
+        }else{
+            viewHolder = (ViewHolder)listItemView.getTag();
         }
 
         //For changing the background color

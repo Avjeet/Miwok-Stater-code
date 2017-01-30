@@ -13,17 +13,18 @@ class Word {
 
     private Integer mAudioId;
 
-    Word(String en_tr, String mi_tr , Integer id,Integer aud_id) {
+    Word(String en_tr, String mi_tr, Integer id, Integer aud_id) {
         mEnglish_trans = en_tr;
         mMiwok_trans = mi_tr;
-        mImgResourceId=id;
-        mAudioId=aud_id;
+        mImgResourceId = id;
+        mAudioId = aud_id;
     }
-    Word(String en_tr, String mi_tr,Integer aud_id ) {
+
+    Word(String en_tr, String mi_tr, Integer aud_id) {
         mEnglish_trans = en_tr;
         mMiwok_trans = mi_tr;
-        mImgResourceId=0;
-        mAudioId=aud_id;
+        mImgResourceId = 0;
+        mAudioId = aud_id;
     }
 
     public String getDefaultTranslation() {
@@ -34,7 +35,11 @@ class Word {
         return mMiwok_trans;
     }
 
-    public Integer getImageResourceId(){ return mImgResourceId; }
+    public Integer getImageResourceId() {
+        return mImgResourceId;
+    }
 
-    public Integer getAudioResourceId(){return mAudioId; }
+    public Integer getAudioResourceId() {
+        return mAudioId;
+    }
 }

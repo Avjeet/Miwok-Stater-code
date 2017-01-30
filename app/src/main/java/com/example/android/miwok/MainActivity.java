@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         family.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(),Colors.class);
+                Intent i = new Intent(getBaseContext(), Colors.class);
                 startActivity(i);
             }
         });
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         phrases.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(),Phrases.class);
+                Intent i = new Intent(getBaseContext(), Phrases.class);
                 startActivity(i);
             }
         });
