@@ -61,7 +61,7 @@ public class NumbersFragment extends Fragment {
 
         listView.setAdapter(itemsAdapter);
 
-        clickListener = new ClickListener(getActivity().getBaseContext(), words);
+        clickListener = new ClickListener(getActivity(), words);
         listView.setOnItemClickListener(clickListener);
 
         return rootView;

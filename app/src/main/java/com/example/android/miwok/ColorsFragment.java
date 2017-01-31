@@ -56,13 +56,14 @@ public class ColorsFragment extends Fragment {
         words.add(new Word("mustard yellow", "chiwiiṭә", R.drawable.color_mustard_yellow, R.raw.color_mustard_yellow));
 
 
+
         WordAdapter itemsAdapter = new WordAdapter(getActivity(), words, R.color.category_colors);
 
         ListView listView = (ListView) rootView.findViewById(R.id.list);
 
         listView.setAdapter(itemsAdapter);
 
-        clickListener = new ClickListener(getActivity().getBaseContext(), words);
+        clickListener = new ClickListener(getActivity(), words);
         listView.setOnItemClickListener(clickListener);
 
         return rootView;

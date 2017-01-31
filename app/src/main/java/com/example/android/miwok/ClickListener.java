@@ -1,8 +1,10 @@
 package com.example.android.miwok;
 
+import android.app.Activity;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
  */
 
 public class ClickListener implements AdapterView.OnItemClickListener {
+    private FragmentActivity mActivity;
     private Context mContext;
     private ArrayList<Word> mWord;
     private Word word;
@@ -33,16 +36,6 @@ public class ClickListener implements AdapterView.OnItemClickListener {
                     mediaPlayer.start();
                     break;
 
-                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
-                    mediaPlayer.pause();
-                    mediaPlayer.seekTo(0);
-                    break;
-
-                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
-                    mediaPlayer.pause();
-                    mediaPlayer.seekTo(0);
-                    break;
-
                 case AudioManager.AUDIOFOCUS_LOSS:
                     mediaPlayer.stop();
                     releaseMediaPlayer();
@@ -50,16 +43,17 @@ public class ClickListener implements AdapterView.OnItemClickListener {
         }
     };
 
-    ClickListener(Context context, ArrayList<Word> word) {
-        mContext = context;
+    ClickListener(FragmentActivity activity, ArrayList<Word> word) {
+        mContext = activity.getBaseContext();
+        mActivity= activity;
         mWord = word;
-        audioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
+        audioManager = (AudioManager) mActivity.getSystemService(Context.AUDIO_SERVICE);
 
-        result = audioManager.requestAudioFocus(mOnAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        releaseMediaPlayer();
         word = mWord.get(position);
 
         Toast.makeText(mContext, word.getMiwokTranslation(), Toast.LENGTH_SHORT).show();
@@ -67,6 +61,7 @@ public class ClickListener implements AdapterView.OnItemClickListener {
         mImageView = (ImageView) view.findViewById(R.id.play_button);
         setPauseImage();
 
+        result = audioManager.requestAudioFocus(mOnAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
 
         if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
             // We have audio focus now.
